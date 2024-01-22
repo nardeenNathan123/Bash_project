@@ -1,0 +1,3 @@
+ID:name:address:age:gpa
+auto:string (Not NULL):string:int (Not NULL):int (Not NULL)
+1:mai:bns:25:4

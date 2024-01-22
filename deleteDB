@@ -1,0 +1,71 @@
+#!/bin/bash
+
+echo "Enter the Name of the DataBase you want to delete :("
+read DataBaseDelete
+
+if [ -e "db/$DataBaseDelete" ]; then
+    clear
+    echo -e "\e[31mAre you sure you want to delete $DataBaseDelete?\e[0m"
+    select answer in "Yes" "No" "Exit"; do
+        case $answer in
+            "Yes")
+                clear
+                rm -r "db/$DataBaseDelete"
+                clear
+                echo -e "\e[32m$DataBaseDelete is removed successfully\e[0m"
+                
+                select reply in "Go back to database menu" "Exit"; do
+                    case $reply in
+                        "Go back to database menu")
+                            clear
+                            source ./createDatabase.sh
+                            break
+                            ;;
+                        "Exit")
+                        clear
+                            echo "GoodBye :)"
+                            break 20
+                            ;;
+                        *)
+                            echo -e "\e[31mPlease enter a valid input\e[0m"
+                            ;;
+                    esac
+                done
+                ;;
+
+            "No")
+                clear
+                source ./createDatabase.sh
+                break
+                ;;
+
+            "Exit")
+                echo "GoodBye :)"
+                break 20
+                ;;
+
+            *)
+                echo -e "\e[31mnot in menu Please enter a valid input\e[0m"
+                ;;
+        esac
+    done
+else
+    echo -e "\e[31mNo DataBase named $DataBaseDelete\e[0m"
+    select vr in "Return Back To database Menu" "Exit"; do
+        case $REPLY in
+            1)
+                clear
+                source ./createDatabase.sh
+                ;;
+            2)
+                clear
+                echo "GoodBye :)"
+                break 20
+                ;;
+            *)
+                echo -e "\e[31mNot in menu. Please enter a valid input"
+                ;;
+        esac
+    done
+fi
+

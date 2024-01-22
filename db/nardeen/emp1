@@ -1,0 +1,2 @@
+ID:name:address:age:salary
+auto:string (Not NULL):string:int:int (Not NULL)
